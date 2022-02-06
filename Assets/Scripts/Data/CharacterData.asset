@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530ca948f7702ae44930c0d80dbf0529, type: 3}
+  m_Name: CharacterData
+  m_EditorClassIdentifier: 
+  bodyData:
+  - Name: Hair
+    sprites:
+    - {fileID: 21300000, guid: f40d961dffbed0e40804980a1d76c0bf, type: 3}
+    - {fileID: 21300000, guid: bcbe4e24a149be4428cdc07fb02eabbd, type: 3}
+    - {fileID: 21300000, guid: d30111e00608d2643ade3e8b6cdc11b6, type: 3}
+    count: 0
+  - Name: Chest
+    sprites:
+    - {fileID: 21300000, guid: 4aee6c94c05dc994f93ac0bb79a89a0c, type: 3}
+    - {fileID: 21300000, guid: 5d53aa142e8f01a48b24d4ea2fa8def9, type: 3}
+    - {fileID: 21300000, guid: 7edd9e035d41b7f41b32d68dab9b9831, type: 3}
+    - {fileID: 21300000, guid: 9974b3a5b2242934baa37cbcd2bdcd2b, type: 3}
+    count: 0
+  - Name: Arms
+    sprites:
+    - {fileID: 21300000, guid: b33978a76441d934c9d9f116e53f1aab, type: 3}
+    - {fileID: 21300000, guid: a2b254a7138b8d8448991ae7e5f8845a, type: 3}
+    - {fileID: 21300000, guid: b0545c531e89a014abbb6e1f9845aa89, type: 3}
+    - {fileID: 21300000, guid: 7d08da4b02617a6489a2ab0f2298d510, type: 3}
+    count: 0

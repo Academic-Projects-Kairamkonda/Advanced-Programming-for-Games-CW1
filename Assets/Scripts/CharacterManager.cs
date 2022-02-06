@@ -8,6 +8,8 @@ public class CharacterManager : MonoBehaviour
     private AudioSource audioSource;
     public Character character;
 
+    public CharacterData characterData;
+
     public GameObject customizePanel;
     public GameObject characterPanel;
     public GameObject animatePanel;
@@ -30,14 +32,24 @@ public class CharacterManager : MonoBehaviour
     public CharacterObject leftShoeObject= new CharacterObject();
     public CharacterObject rightShoeObject= new CharacterObject();
 
+    [SerializeField]
+    public Dictionary<string,AudioClip> characterSounds = new Dictionary<string, AudioClip>();
+
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        characterSounds.Add("Change", audios[0]);
+        characterSounds.Add("Confirmation", audios[1]);
+        characterSounds.Add("Back",audios[2]);
+
     }
 
     void Start()
     {
+        Debug.Log(characterData.bodyData[0].Name);
+
         customizePanel.SetActive(true);
         characterPanel.SetActive(false);
 
@@ -60,20 +72,35 @@ public class CharacterManager : MonoBehaviour
 
     public void CreateCharacter()
     {
-        Debug.Log(chestObject.count);
+        //audioSource.clip = audios[1];
+        audioSource.clip = characterSounds["Confirmation"];
+        audioSource.Play();
 
-        audioSource.clip = audios[1];
-        this.GetComponent<AudioSource>().Play();
+        bool createCharacterState = true;
 
-        animatePanel.SetActive(true);
-        characterPanel.SetActive(true);
+        animatePanel.SetActive(createCharacterState);
 
-        customizePanel.SetActive(false);
+        characterPanel.SetActive(createCharacterState);
+        customizePanel.SetActive(!createCharacterState);
 
         character.chest/*.gameObject.GetComponent<Image>()*/.sprite = chestObject.sprites[chestObject.count];
         character.hair/*.gameObject.GetComponent<Image>()*/.sprite=hairObject.sprites[hairObject.count];
         character.rightArm/*.gameObject.GetComponent<Image>()*/.sprite=rightArmObject.sprites[rightArmObject.count];
         character.leftArm/*.gameObject.GetComponent<Image>()*/.sprite = rightArmObject.sprites[rightArmObject.count];
+    }
+
+    public void BackCustomize()
+    {
+        bool backState = true;
+
+        //audioSource.clip = audios[2];
+        audioSource.clip = characterSounds["Back"];
+        audioSource.Play();
+
+        animatePanel.SetActive(backState);
+
+        customizePanel.SetActive(backState);
+        characterPanel.SetActive(!backState);
     }
 
     public void CustomizeChest()
@@ -84,16 +111,6 @@ public class CharacterManager : MonoBehaviour
             chestObject.count++;
 
         chestObject.image.sprite= chestObject.sprites[chestObject.count];
-    }
-
-    public void CustomizeHair()
-    {
-        if (hairObject.count== hairObject.sprites.Count-1)
-            hairObject.count = 0;
-        else
-            hairObject.count++;
-
-        hairObject.image.sprite= hairObject.sprites[hairObject.count];
     }
 
     public void CustomizeArms()
@@ -107,21 +124,22 @@ public class CharacterManager : MonoBehaviour
         leftArmObject.image.sprite=leftArmObject.sprites[rightArmObject.count];
     }
 
-    public void BackCustomize()
+    public void CustomizeHair()
     {
-        audioSource.clip = audios[2];
-        this.GetComponent<AudioSource>().Play();
+        if (hairObject.count== hairObject.sprites.Count-1)
+            hairObject.count = 0;
+        else
+            hairObject.count++;
 
-        animatePanel.SetActive(true);
-        customizePanel.SetActive(true);
-
-        characterPanel.SetActive(!customizePanel.active);
+        hairObject.image.sprite= hairObject.sprites[hairObject.count];
     }
+
 
     public void PlayAudio()
     {
-        audioSource.clip=audios[0];
-        this.GetComponent<AudioSource>().Play();
+        //audioSource.clip = audios[0];
+        audioSource.clip = characterSounds["Change"];
+        audioSource.Play();
     }
 }
 
