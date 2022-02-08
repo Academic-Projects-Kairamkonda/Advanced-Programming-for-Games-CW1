@@ -19,6 +19,8 @@ public class CharacterManager : MonoBehaviour
 
     private Button[] buttons;
 
+    #region bodyObjects
+
     public CharacterObject chestObject= new CharacterObject();
     public CharacterObject faceObject= new CharacterObject();
     public CharacterObject headObject = new CharacterObject();
@@ -32,6 +34,12 @@ public class CharacterManager : MonoBehaviour
     public CharacterObject leftShoeObject= new CharacterObject();
     public CharacterObject rightShoeObject= new CharacterObject();
 
+    #endregion bodyObjects
+
+
+    /// <summary>
+    /// adds the audio clips to the string.
+    /// </summary>
     [SerializeField]
     public Dictionary<string,AudioClip> characterSounds = new Dictionary<string, AudioClip>();
 
@@ -70,6 +78,9 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates characters.
+    /// </summary>
     public void CreateCharacter()
     {
         //audioSource.clip = audios[1];
@@ -89,6 +100,9 @@ public class CharacterManager : MonoBehaviour
         character.leftArm/*.gameObject.GetComponent<Image>()*/.sprite = rightArmObject.sprites[rightArmObject.count];
     }
 
+    /// <summary>
+    /// back to the customize panel.
+    /// </summary>
     public void BackCustomize()
     {
         bool backState = true;
@@ -103,6 +117,10 @@ public class CharacterManager : MonoBehaviour
         characterPanel.SetActive(!backState);
     }
 
+
+    /// <summary>
+    /// This function changes the chest sprite.
+    /// </summary>
     public void CustomizeChest()
     {
         if (chestObject.count == chestObject.sprites.Count-1)
@@ -113,6 +131,9 @@ public class CharacterManager : MonoBehaviour
         chestObject.image.sprite= chestObject.sprites[chestObject.count];
     }
 
+    /// <summary>
+    /// Similarly to chest, it changes its sprites.
+    /// </summary>
     public void CustomizeArms()
     {
         if (rightArmObject.count==rightArmObject.sprites.Count-1)
@@ -124,6 +145,10 @@ public class CharacterManager : MonoBehaviour
         leftArmObject.image.sprite=leftArmObject.sprites[rightArmObject.count];
     }
 
+
+    /// <summary>
+    /// Same as this go.
+    /// </summary>
     public void CustomizeHair()
     {
         if (hairObject.count== hairObject.sprites.Count-1)
@@ -134,7 +159,9 @@ public class CharacterManager : MonoBehaviour
         hairObject.image.sprite= hairObject.sprites[hairObject.count];
     }
 
-
+    /// <summary>
+    /// Plays audio sound to the buttons.
+    /// </summary>
     public void PlayAudio()
     {
         //audioSource.clip = audios[0];

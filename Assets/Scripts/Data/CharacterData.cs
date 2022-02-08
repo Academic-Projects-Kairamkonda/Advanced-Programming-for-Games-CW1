@@ -6,6 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "CharacterData", menuName = "ScriptableObjects/Character Data", order = 1)]
 public class CharacterData : ScriptableObject
 {
+    /// <summary>
+    /// bodydata base for the bodyParts.
+    /// </summary>
     public List<bodyObject> bodyData;
 }
 
